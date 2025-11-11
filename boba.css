@@ -1,0 +1,19 @@
+#arf {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(3rem, 10vw, 10rem);
+    color: #db9b24;
+    padding: 0rem clamp(1rem, 2vw, 3rem);
+    border-radius: clamp(0.4rem, 0.75vw, 1rem);
+    float: middle;
+    text-align: center;
+}
+  
+#arf:hover {
+    background-color: #ffd079;
+    color: #bd851d;
+    transition: 0.5s;
+}
+
+html{
+    background-color: #ffdb9a;
+}
