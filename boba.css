@@ -16,4 +16,16 @@
 
 html{
     background-color: #ffdb9a;
+    font-family: 'Momo Trust Sans', sans-serif;
+}
+
+.momo-trust-sans {
+  font-family: "Momo Trust Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+p {
+    color: #bd851d;
 }
