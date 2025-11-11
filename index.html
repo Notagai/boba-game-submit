@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gooning</title>
-    <link rel="stylesheet" href="boba.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@500&display=swap" rel="stylesheet">
@@ -12,12 +12,21 @@
 <body>
     <div>
         <h1 id="arf" data-value="boba thing" href="boba.html">boba thing</h1>
-        <script src="boba.js"></script>
+        <script src="script.js"></script>
     </div>
-    <div>
+    <div id="gamebox">
+        <h1 id="winmsg">🎉YOU WIN!!!🎉</h1>
+        
         <p>this is a boba button! click it to make some boba. your goal is to make $25 making boba. that gets you a boba gift card!</p>
-        <p id="thing">you currently have 0 boba.</p>
-        <button id="button" onclick="brew()">brew boba</button>
+        <p id="thing">you currently have 0 boba and $0.</p>
+        <p id="qua">each boba you sell earns you $0.01.</p>
+        <button id="brew" onclick="brew()">brew boba</button>
+
+        <p id="sellDesc">well now you have to sell the boba, click the button to sell it!</p>
+        <button id="sell" onclick="sell()">sell boba</button>
+
+        <p id="markDesc">that's not a lot of money... let's increase the money you get per boba!</p>
+        <button id="mark" onclick="market()">advertise for $0.10</button>
     </div>
 </body>
 </html>

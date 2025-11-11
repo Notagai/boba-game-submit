@@ -29,7 +29,7 @@ html{
 p, button {
     color: #bd851d;
     font-size: 1.5rem;
-    margin: 2rem;
+    margin-left: 2rem;
 }
 
 button {
@@ -39,4 +39,15 @@ button {
     border-radius: 0.5rem;
     cursor: pointer;
     font-family: "Momo Trust Sans", sans-serif;
+}
+
+#sell, #sellDesc, #mark, #markDesc, #winmsg {
+    display: none;
+}
+
+#winmsg{
+    color: #db9b24;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 2rem;
 }
