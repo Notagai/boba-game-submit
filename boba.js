@@ -26,3 +26,21 @@ document.querySelector("h1").onmouseover = event => {
     iteration += 1 / 3;
   }, 30);
 }
+
+let boba = 0;
+let quality = 0.001;
+let btnAllowed = true;
+
+function brew() {
+    if(btnAllowed == true) {
+        btnAllowed = false;
+        document.getElementById('button').style.cursor = 'not-allowed';
+        setTimeout(() => {
+            boba++;
+            document.getElementById("thing").innerText = 'you currently have ' + boba + ' boba.';
+            document.getElementById('button').style.cursor = 'pointer';
+        }, 5000);
+    } else {
+        alert("your boba is brewing! please wait before brewing more.");
+    }     
+}

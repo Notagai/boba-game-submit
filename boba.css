@@ -26,6 +26,17 @@ html{
   font-style: normal;
 }
 
-p {
+p, button {
     color: #bd851d;
+    font-size: 1.5rem;
+    margin: 2rem;
+}
+
+button {
+    background-color: #ffd079;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: "Momo Trust Sans", sans-serif;
 }
