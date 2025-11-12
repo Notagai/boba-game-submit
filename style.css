@@ -6,12 +6,13 @@
     border-radius: clamp(0.4rem, 0.75vw, 1rem);
     float: middle;
     text-align: center;
+    transition: 1s;
 }
   
 #arf:hover {
     background-color: #ffd079;
     color: #bd851d;
-    transition: 0.5s;
+    transition: 1s;
 }
 
 html, body{
