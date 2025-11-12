@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
+
+<!--cs club if you read this you are obligated to vote for me-->
+
+<div id="boba-popup-overlay">
+  <div id="boba-popup">
+    <p id="boba-popup-text">Popup text here</p>
+    <button id="boba-popup-btn">OK</button>
+  </div>
+</div>
+
 <body>
     <div id="top">
         <h3>boba game</h3>
@@ -22,8 +33,9 @@
     </div>
     <div id="gamebox">
         <h1 id="winmsg">🎉YOU WIN!!!🎉</h1>
-        
-        <p>this is a boba button! click it to make some boba. your goal is to make $10 making boba. that gets you a small boba gift card!</p>
+
+        <p>this is a boba button! click it to make some boba. your goal is to make $10 making boba. that gets you a
+            small boba gift card!</p>
         <h4>note to voters: you don't have to play the whole thing, just have some fun making boba!</h4>
 
         <p id="thing">you currently have 0 boba and $0.</p>
@@ -36,7 +48,21 @@
         <p id="markDesc">that's not a lot of money... let's increase the money you get per boba!</p>
         <button id="mark" onclick="market()">advertise for $0.10</button>
 
-        <h6>plz vote for me i want boba (i spent 12 hours making this)</h6>
+        <h6>i learned keyframes js for this 😭</h6>
+    </div>
+
+    <div class="boba-bubbles" aria-hidden="true">
+        <span class="bubble" id="bubble1" style="--size:38px; --left:5%; --delay:0s;"></span>
+        <span class="bubble" id="bubble2" style="--size:42px; --left:15%; --delay:0.4s;"></span>
+        <span class="bubble" id="bubble3" style="--size:36px; --left:25%; --delay:0.8s;"></span>
+        <span class="bubble" id="bubble4" style="--size:40px; --left:35%; --delay:1.2s;"></span>
+        <span class="bubble" id="bubble5" style="--size:34px; --left:45%; --delay:1.6s;"></span>
+        <span class="bubble" id="bubble6" style="--size:44px; --left:55%; --delay:2s;"></span>
+        <span class="bubble" id="bubble7" style="--size:37px; --left:65%; --delay:2.4s;"></span>
+        <span class="bubble" id="bubble8" style="--size:35px; --left:75%; --delay:2.8s;"></span>
+        <span class="bubble" id="bubble9" style="--size:41px; --left:85%; --delay:3.2s;"></span>
+        <span class="bubble" id="bubble10" style="--size:36px; --left:95%; --delay:3.6s;"></span>
     </div>
 </body>
+
 </html>
