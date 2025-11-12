@@ -92,3 +92,10 @@ button {
     color: white;
     transition: width 0.4s ease;
 }
+
+h6{
+    color: #bd851d;
+    font-size: 0.8rem;
+    margin-left: 2rem !important;
+    margin: 1rem;
+}
