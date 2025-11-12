@@ -144,6 +144,10 @@ h6 {
     margin-bottom: 20px;
 }
 
+#bubble3, #bubble5, #bubble10 {
+    pointer-events: all;
+}
+
 .boba-bubbles .bubble {
     position: absolute;
     bottom: 0;
@@ -196,7 +200,7 @@ h6 {
 
 #boba-popup {
   background-color: #a0721c;
-  color: #ffd079;
+  color: #fad693;
   padding: 2rem;
   border-radius: 1rem;
   text-align: center;
@@ -211,7 +215,7 @@ h6 {
   border-radius: 0.5rem;
   border: none;
   background-color: #ffd079;
-  color: #d49621;
+  color: #a0721c;
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.15s ease;
@@ -219,4 +223,16 @@ h6 {
 
 #boba-popup-btn:hover {
   transform: scale(1.05);
+}
+
+.banana{
+    display:inline-block;
+}
+
+#leader{
+    cursor: pointer;
+}
+
+.gamebox{
+    display: inline-block;
 }

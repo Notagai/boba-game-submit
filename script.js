@@ -1,4 +1,5 @@
 const letters = "abcdefghijklmnopqrstuvwxyz";
+const thesoundofthedemons = new Audio("fahhhhhhhhhhhhhh.mp3")
 
 let interval = null;
 
@@ -33,6 +34,9 @@ let money = 0;
 let btnAllowed = true;
 let markAllowed = true;
 let marketcost = 0.10;
+let flag1 = false;
+let flag2 = false;
+let clickedCount = 3;
 
 function brew() {
   if (btnAllowed == true) {
@@ -49,7 +53,7 @@ function brew() {
       document.getElementById('sell').style.display = 'block';
       document.getElementById('sellDesc').style.display = 'block';
       document.getElementById('brew').innerText = 'brew boba';
-    }, 500); //change back to 500 l8r
+    }, Math.floor(Math.random() * 200 + 400));
   } else {
     showBobaPopup("your boba is brewing! please wait before brewing more.");
   }
@@ -93,14 +97,20 @@ function market() {
       document.getElementById('qua').innerHTML = 'each boba you sell earns you $' + Math.round(quality * 100) / 100 + '.';
     }, 5000); //change back to 5000 l8r
   } else {
-    showBobaPopup("your marketing is in progress! please wait before advertising more.");
+    if(money >= marketcost) {
+      showBobaPopup("your marketing is in progress! please wait before advertising more.");
+    } else {
+      showBobaPopup("get some more money to hire an actually respectable advertising agency.");
+    }
   }
 }
 
 const checkforwin = setInterval(() => {
-  if (money >= 10) {
+  if (money >= 10 && clickedCount>0) {
     clearInterval(checkforwin);
     document.getElementById("winmsg").style.display = 'block';
+    showBobaPopup("🎉YOU WIN!!!🎉")
+    confetti();
   }
   updateCustomProgress(Math.floor((money / 100) * 1000));
 }, 1);
@@ -124,4 +134,42 @@ function showBobaPopup(text) {
   btn.onclick = () => {
     overlay.style.display = "none";
   };
+}
+
+function johnnybequiet() {
+  confetti();
+  showBobaPopup("wow you found an easter egg! here's some confetti for your effort 🎉");
+  if (!flag1) {
+    flag1 = true;
+  }
+}
+
+function johnnybeloud() {
+  showBobaPopup("nice try ts is not giving you more confetti");
+  if (flag1) {
+    flag2 = true;
+    flag1 = false;
+  }
+
+  if (clickedCount == 0) {
+    showBobaPopup("but it do be giving some moneys!!!");
+    document.getElementById("thing").innerText = 'you currently have ' + boba + ' boba and $' + Math.round(money * 100) / 100 + '.';
+    thesoundofthedemons.play();
+    money += 10;
+  }
+}
+
+function johnnybeded() {
+  if (flag1 && flag2) {
+    clickedCount --;
+  }
+  
+  flag1 = false;
+  flag2 = false;
+}
+
+console.log('5, 10, 5, 3, x3, 10')
+
+function bananaphone() {
+  showBobaPopup("Leaderboard: \n 1. Little Timmy: $7890282746 \n 2. You: $" + money + "\n 3. Little Suzie: $0") 
 }
