@@ -38,7 +38,7 @@ function brew() {
     if(btnAllowed == true) {
         btnAllowed = false;
         document.getElementById('brew').style.cursor = 'not-allowed';
-        document.getElementById('brew').innerText = 'brewing...';
+        document.getElementById('brew').innerText = 'boba brewing...';
         document.getElementById('brew').style.backgroundColor = '#dbd0baff';
         setTimeout(() => {
             boba++;
@@ -98,8 +98,17 @@ function market() {
 }
 
 const checkforwin = setInterval(() => {
-    if(money >= 25) {
+    if(money >= 10) {
         clearInterval(checkforwin);
         document.getElementById("winmsg").style.display = 'block';
     }
+    updateCustomProgress(Math.floor((money / 10) * 100));
 }, 1);
+
+const customBar = document.getElementById('myBar');
+function updateCustomProgress(percent) {
+    if (percent >= 0 && percent <= 100) {
+        customBar.style.width = `${percent}%`;
+        customBar.textContent = `${percent}% to $10!`;
+    }
+}

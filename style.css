@@ -14,9 +14,10 @@
     transition: 0.5s;
 }
 
-html{
+html, body{
     background-color: #ffdb9a;
     font-family: 'Momo Trust Sans', sans-serif;
+    padding: 0px;
 }
 
 .momo-trust-sans {
@@ -29,7 +30,29 @@ html{
 p, button {
     color: #bd851d;
     font-size: 1.5rem;
+    margin-left: 2rem !important;
+    margin: 1rem;
+}
+
+ h4{
+    color: #bd851d;
+    font-size: 1rem;
+    margin-left: 2rem !important;
+    margin: 1rem;
+ }
+
+h3{
+    color: #ffd079;
     margin-left: 2rem;
+    padding: 5px
+}
+
+#top{
+    background-color: #bd851d;
+    border-radius: 3px;
+    margin: 0 auto;
+    align-items: center;
+    padding: 0.5rem;
 }
 
 button {
@@ -50,4 +73,22 @@ button {
     font-size: 2rem;
     text-align: center;
     margin-top: 2rem;
+}
+
+.progress-container {
+    width: 90vw;
+    background-color: #ffd079;
+    border-radius: 5px;
+    overflow: hidden;
+    margin:  10px auto;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 30px;
+    background-color: #d49621;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    transition: width 0.4s ease;
 }
