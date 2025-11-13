@@ -1,6 +1,35 @@
 const letters = "abcdefghijklmnopqrstuvwxyz";
 const thesoundofthedemons = new Audio("fahhhhhhhhhhhhhh.mp3");
 
+// detect mobile
+function isMobile() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+// orientation check
+function checkOrientation() {
+  if (isMobile()) {
+    if (window.innerWidth > window.innerHeight) {
+      showBobaPopup("📱 please rotate your device to play properly!");
+    }
+  }
+}
+
+// run once + when they rotate
+window.addEventListener("load", checkOrientation);
+window.addEventListener("orientationchange", checkOrientation);
+window.addEventListener("resize", checkOrientation);
+
+
+// loading screen
+window.addEventListener("load", () => {
+  const loadScreen = document.getElementById("loading-screen");
+  setTimeout(() => {
+    loadScreen.classList.add("hidden");
+  }, 2500); // stays up for 2.5 seconds
+});
+
+
 // title hover effect
 const title = document.querySelector("h1#arf");
 let titleInterval = null;
