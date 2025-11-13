@@ -1,6 +1,31 @@
+// audio n shi
+
 const letters = "abcdefghijklmnopqrstuvwxyz";
 const thesoundofthedemons = new Audio("fahhhhhhhhhhhhhh.mp3");
+const bgmusic = new Audio("bgm.mp3");
+const popSound = new Audio("pop1.mp3");
+popSound.volume = 1;
 
+// intro
+showBobaPopup("welcome to the boba game! check the console for a tutorial, and have fun brewing!");
+
+// music
+bgmusic.loop = true;
+bgmusic.volume = 0.2;
+document.body.addEventListener('click', () => {
+  bgmusic.volume = 0;
+  bgmusic.play().catch(() => {});
+  
+  let vol = 0;
+  const fadeIn = setInterval(() => {
+    vol += 0.01; // adjust speed if needed
+    if (vol >= 0.5) { // target volume
+      vol = 0.5;
+      clearInterval(fadeIn);
+    }
+    bgmusic.volume = vol;
+  }, 50); // every 50ms
+}, { once: true });
 // detect mobile
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -8,10 +33,8 @@ function isMobile() {
 
 // orientation check
 function checkOrientation() {
-  if (isMobile()) {
-    if (window.innerWidth > window.innerHeight) {
-      showBobaPopup("📱 please rotate your device to play properly!");
-    }
+  if (window.innerWidth < window.innerHeight) {
+    showBobaPopup("📱 please rotate your device to play properly!");
   }
 }
 
@@ -19,7 +42,6 @@ function checkOrientation() {
 window.addEventListener("load", checkOrientation);
 window.addEventListener("orientationchange", checkOrientation);
 window.addEventListener("resize", checkOrientation);
-
 
 // loading screen
 window.addEventListener("load", () => {
@@ -41,12 +63,12 @@ title.onmouseover = event => {
     event.target.innerText = event.target.dataset.value
       .split("")
       .map((letter, index) => {
-        if(index < iteration) return event.target.dataset.value[index];
+        if (index < iteration) return event.target.dataset.value[index];
         return letters[Math.floor(Math.random() * 26)];
       })
       .join("");
-    if(iteration >= event.target.dataset.value.length) clearInterval(titleInterval);
-    iteration += 1/3;
+    if (iteration >= event.target.dataset.value.length) clearInterval(titleInterval);
+    iteration += 1 / 3;
   }, 30);
 };
 
@@ -63,7 +85,7 @@ let adsrun = 0;
 // easter egg variables
 let flags;
 const CLICKING_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-let currentBubble  = CLICKING_ORDER[0];
+let currentBubble = CLICKING_ORDER[0];
 let clickedAmount = 0;
 
 // type-once flags
@@ -86,11 +108,11 @@ let currentQuest = 0;
 function updateQuestProgress() {
   if (currentQuest >= quests.length) return;
   const quest = quests[currentQuest];
-  let progress = quest.getValue()/quest.target;
+  let progress = quest.getValue() / quest.target;
   if (progress > 1) progress = 1;
   const customBar = document.getElementById('myBar');
-  customBar.style.width = `${progress*100}%`;
-  customBar.textContent = `${Math.floor(progress*100)}%`;
+  customBar.style.width = `${progress * 100}%`;
+  customBar.textContent = `${Math.floor(progress * 100)}%`;
 
   if (quest.getValue() >= quest.target) {
     confetti();
@@ -109,10 +131,11 @@ function brew() {
   brewBtn.style.backgroundColor = '#dbd0baff';
   brewBtn.innerText = 'boba brewing...';
   bobasold++;
+  popSound.play();
 
   setTimeout(() => {
     boba++;
-    document.getElementById("thing").innerText = `you currently have ${boba} boba and $${Math.round(money*100)/100}.`;
+    document.getElementById("thing").innerText = `you currently have ${boba} boba and $${Math.round(money * 100) / 100}.`;
     brewBtn.style.cursor = 'pointer';
     brewBtn.style.backgroundColor = '#ffd079';
     brewBtn.innerText = 'brew boba';
@@ -121,11 +144,14 @@ function brew() {
     const sellDesc = document.getElementById('sellDesc');
     sellDesc.style.display = 'block';
     if (!typedFlags.sellDesc) {
-      typeText(sellDesc, ">boba-game/console: great job, you made boba. try to make $0.10 selling boba!");
+      typeText(sellDesc, ">boba-game/console: great job! that's not gonna earn you money though, try selling your boba and come back when you have $0.10.");
       typedFlags.sellDesc = true;
     }
-    document.getElementById('sell').style.display = 'block';
-  }, Math.floor(Math.random()*200+400));
+
+    if (bobasold == 1) {
+      document.getElementById('sell').style.display = 'block';
+    }
+  }, Math.floor(Math.random() * 200 + 400));
 }
 
 // sell boba
@@ -133,9 +159,10 @@ function sell() {
   if (boba <= 0) return showBobaPopup("no boba to sell! brew some first");
   boba--;
   money += quality;
-  money = Math.round(money*100)/100;
+  money = Math.round(money * 100) / 100;
   document.getElementById("thing").innerText = `you currently have ${boba} boba and $${money}.`;
-  if (money >= 0.10 && adsrun===0) marketingUnlock();
+  if (money >= 0.10 && adsrun === 0) marketingUnlock();
+  popSound.play();
 }
 
 // marketing unlock
@@ -143,9 +170,11 @@ function marketingUnlock() {
   adsrun = 1;
   const markBtn = document.getElementById('mark');
   markBtn.style.display = 'block';
+  markBtn.classList.add('pop-in');
+  markBtn.addEventListener('animationend', () => markBtn.classList.remove('pop-in'));
   const markDesc = document.getElementById('markDesc');
   markDesc.style.display = 'block';
-  if(!typedFlags.markDesc){
+  if (!typedFlags.markDesc) {
     typeText(markDesc, ">boba-game/console: setup marketing to increase your boba sales! click the button to advertise your boba.");
     typedFlags.markDesc = true;
   }
@@ -159,6 +188,7 @@ function market() {
     return;
   }
 
+  popSound.play();
   markAllowed = false;
   const markBtn = document.getElementById('mark');
   markBtn.style.cursor = 'not-allowed';
@@ -173,11 +203,11 @@ function market() {
     markBtn.style.cursor = 'pointer';
     markBtn.style.backgroundColor = '#ffd079';
     markBtn.innerText = `advertise for $${marketcost}`;
-    document.getElementById("thing").innerText = `you currently have ${boba} boba and $${Math.round(money*100)/100}.`;
-    document.getElementById('qua').innerHTML = `each boba you sell earns you $${Math.round(quality*100)/100}.`;
+    document.getElementById("thing").innerText = `you currently have ${boba} boba and $${Math.round(money * 100) / 100}.`;
+    document.getElementById('qua').innerHTML = `each boba you sell earns you $${Math.round(quality * 100) / 100}.`;
 
     const firstAd = document.getElementById('firstAd');
-    if(firstAd && !typedFlags.firstAd){
+    if (firstAd && !typedFlags.firstAd) {
       firstAd.style.display = 'block';
       typeText(firstAd, ">boba-game/console: now that you know the game, it's all up to you. goal: make $10.");
       typedFlags.firstAd = true;
@@ -189,14 +219,14 @@ let won = false;
 
 // win check
 setInterval(() => {
-  if (money >= 10 && won==false) {
+  if (money >= 10 && won == false) {
     document.getElementById("winmsg").style.display = 'block';
     if (clickedAmount < CLICKING_ORDER.length) {
       showBobaPopup("🎉YOU WIN!!!🎉");
     } else {
       showBobaPopup("omg u cheated to win??? well... 🎉YOU WIN ANYWAYS!!!🎉");
     }
-    
+
     confetti();
     won = true;
   }
