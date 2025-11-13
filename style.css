@@ -145,9 +145,7 @@ h6 {
     margin-bottom: 20px;
 }
 
-#bubble3,
-#bubble5,
-#bubble10 {
+.bubble {
     pointer-events: all;
 }
 

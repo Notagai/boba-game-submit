@@ -30,7 +30,12 @@ let btnAllowed = true;
 let markAllowed = true;
 let marketcost = 0.10;
 let adsrun = 0;
-let clickedCount = 3;
+
+// easter egg variables
+let flags;
+const CLICKING_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let currentBubble  = CLICKING_ORDER[0];
+let clickedAmount = 0;
 
 // type-once flags
 let typedFlags = {
@@ -75,7 +80,7 @@ function brew() {
   brewBtn.style.backgroundColor = '#dbd0baff';
   brewBtn.innerText = 'boba brewing...';
   bobasold++;
-  clickedCount++;
+
   setTimeout(() => {
     boba++;
     document.getElementById("thing").innerText = `you currently have ${boba} boba and $${Math.round(money*100)/100}.`;
@@ -155,9 +160,14 @@ let won = false;
 
 // win check
 setInterval(() => {
-  if (money >= 10 && clickedCount>0 && won==false) {
+  if (money >= 10 && won==false) {
     document.getElementById("winmsg").style.display = 'block';
-    showBobaPopup("🎉YOU WIN!!!🎉");
+    if (clickedAmount < CLICKING_ORDER.length) {
+      showBobaPopup("🎉YOU WIN!!!🎉");
+    } else {
+      showBobaPopup("omg u cheated to win??? well... 🎉YOU WIN ANYWAYS!!!🎉");
+    }
+    
     confetti();
     won = true;
   }
@@ -199,17 +209,43 @@ function typeText(element, text, speed = 50) {
 }
 
 // easter eggs & leaderboard (unchanged)
-function johnnybequiet() {
-  confetti();
-  showBobaPopup("wow you found an easter egg! here's some confetti for your effort 🎉");
-}
 
-function johnnybeloud() {
-  showBobaPopup("nice try ts is not giving you more confetti");
-}
 
-function johnnybeded() {
-  clickedCount--;
+function resetFlags() {
+  flags = [];
+  for (let i = 0; i < CLICKING_ORDER.length; i++) {
+    flags.push(false);
+  }
+}
+resetFlags();
+
+function bubble(bubbleNumber) {
+  clickedAmount += 1;
+  console.log(`Clicked bubble ${bubbleNumber}, clickedAmount: ${clickedAmount}, currentBubble: ${currentBubble}`);
+
+  if (clickedAmount == CLICKING_ORDER.length) {
+    money += 10;
+    money = Math.round(money * 100) / 100;
+    document.getElementById("thing").innerText = `you currently have ${boba} boba and $${money}.`;
+    currentQuest = 3;
+    updateQuestProgress();
+    return;
+
+  } else if (bubbleNumber == currentBubble) {
+    flags[bubbleNumber - 1] = true;
+    currentBubble = CLICKING_ORDER[clickedAmount];
+  } else {
+    resetFlags();
+    clickedAmount = 0;
+    currentBubble = CLICKING_ORDER[0];
+  }
+
+  if (bubbleNumber == 5) {
+    confetti();
+    showBobaPopup("wow you found an easter egg! here's some confetti for your effort 🎉");
+  } else if (bubbleNumber == 10) {
+    showBobaPopup("nice try ts is not giving you more confetti");
+  }
 }
 
 function bananaphone() {
