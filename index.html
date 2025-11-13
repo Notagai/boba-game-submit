@@ -25,14 +25,13 @@
     <div id="top">
         <h3 class="banana">boba game</h3>
         <h3 class="banana" id="leader" onclick="bananaphone()">leaderboard</h3>
-        <h3 class="banana" id="upg" onclick="leoismakingmecrashoutguys()">upgrades</h3>
         <div class="progress-container">
             <div class="progress-bar" id="myBar"></div>
         </div>
     </div>
-    
+
     <div id="upgrades">
-    
+
     </div>
 
     <div>
@@ -41,24 +40,29 @@
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
     </div>
 
-    <div class="gamebox">
-        <h1 id="winmsg">u won already! keep making boba tho</h1>
+    <h1 id="winmsg">u won already! keep making boba tho</h1>
 
-        <p>this is a boba button! click it to make some boba. your goal is to make $10 making boba. that gets you a
-            small boba gift card!</p>
-        <h4>note to voters: you don't have to play the whole thing, just have some fun making boba!</h4>
+    <div id="game-container">
+        <div class="gamebox" id="maingame">
 
-        <p id="thing">you currently have 0 boba and $0.</p>
-        <p id="qua">each boba you sell earns you $0.01.</p>
-        <button id="brew" onclick="brew()">brew boba</button>
+            <p id="thing">you currently have 0 boba and $0.</p>
+            <p id="qua">each boba you sell earns you $0.01.</p>
 
-        <p id="sellDesc">well now you have to sell the boba, click the button to sell it!</p>
-        <button id="sell" onclick="sell()">sell boba</button>
-    </div>
+            <button id="brew" onclick="brew()">brew boba</button>
 
-    <div class="gamebox" id="gamexob">
-        <p id="markDesc">that's not a lot of money... let's increase the money you get per boba!</p>
-        <button id="mark" onclick="market()">advertise for $0.10</button>
+            <button id="sell" onclick="sell()">sell boba</button>
+
+            <button id="mark" onclick="market()">advertise for $0.10</button>
+        </div>
+        <div class="gamebox" id="console">
+            <p>console</p>
+            <p>>boba-game/console: welcome to the boba game! let's get started by brewing some boba.</p>
+            <p>>boba-game/console: i hope you enjoy it, i spent way too long on this</p>
+            <p id="sellDesc">>boba-game/console: great job, you made boba. try to make $0.10 selling boba!</p>
+            <p id="markDesc">>boba-game/console: let's make the boba start selling more by advertising. click button to
+                tell the world about your boba!</p>
+            <p id="firstAd">>boba-game/console: now that you know the game, it's all up to you. goal: make $10.</p>
+        </div>
     </div>
 
     <div class="boba-bubbles" aria-hidden="true">
@@ -66,12 +70,14 @@
         <span class="bubble" id="bubble2" style="--size:42px; --left:15%; --delay:0.4s;"></span>
         <span class="bubble" id="bubble3" onclick="johnnybeded()" style="--size:36px; --left:25%; --delay:0.8s;"></span>
         <span class="bubble" id="bubble4" style="--size:40px; --left:35%; --delay:1.2s;"></span>
-        <span class="bubble" id="bubble5" onclick="johnnybequiet()" style="--size:34px; --left:45%; --delay:1.6s;"></span>
+        <span class="bubble" id="bubble5" onclick="johnnybequiet()"
+            style="--size:34px; --left:45%; --delay:1.6s;"></span>
         <span class="bubble" id="bubble6" style="--size:44px; --left:55%; --delay:2s;"></span>
         <span class="bubble" id="bubble7" style="--size:37px; --left:65%; --delay:2.4s;"></span>
         <span class="bubble" id="bubble8" style="--size:35px; --left:75%; --delay:2.8s;"></span>
         <span class="bubble" id="bubble9" style="--size:41px; --left:85%; --delay:3.2s;"></span>
-        <span class="bubble" id="bubble10" onclick="johnnybeloud()" style="--size:36px; --left:95%; --delay:3.6s;"></span>
+        <span class="bubble" id="bubble10" onclick="johnnybeloud()"
+            style="--size:36px; --left:95%; --delay:3.6s;"></span>
     </div>
 
     <h6>i learned keyframes js for this 😭</h6>

@@ -37,6 +37,8 @@ let marketcost = 0.10;
 let flag1 = false;
 let flag2 = false;
 let clickedCount = 3;
+let bobasold = 0;
+let adsrun = 0;
 
 function brew() {
   if (btnAllowed == true) {
@@ -44,6 +46,7 @@ function brew() {
     document.getElementById('brew').style.cursor = 'not-allowed';
     document.getElementById('brew').innerText = 'boba brewing...';
     document.getElementById('brew').style.backgroundColor = '#dbd0baff';
+    bobasold++;
     setTimeout(() => {
       boba++;
       document.getElementById("thing").innerText = 'you currently have ' + boba + ' boba and $' + Math.round(money * 100) / 100 + '.';
@@ -52,7 +55,11 @@ function brew() {
       btnAllowed = true;
       document.getElementById('sell').style.display = 'block';
       document.getElementById('sellDesc').style.display = 'block';
+      const sellDescEl = document.getElementById('sellDesc');
       document.getElementById('brew').innerText = 'brew boba';
+      if (bobasold == 1) {
+        typeText(sellDescEl, ">boba-game/console: great job, you made boba. try to make $0.10 selling boba!");
+      }
     }, Math.floor(Math.random() * 200 + 400));
   } else {
     showBobaPopup("your boba is brewing! please wait before brewing more.");
@@ -62,6 +69,8 @@ function brew() {
 function marketingUnlock() {
   document.getElementById('mark').style.display = 'block';
   document.getElementById('markDesc').style.display = 'block';
+  const markDescEl = document.getElementById('markDesc');
+  typeText(markDescEl, ">boba-game/console: let's advertise the boba to make more money. click the button to tell the world about your boba!");
 }
 
 function sell() {
@@ -85,6 +94,7 @@ function market() {
     document.getElementById('mark').style.backgroundColor = '#dbd0baff';
     document.getElementById('mark').innerText = 'running ads...';
     money -= marketcost;
+    adsrun++;
     setTimeout(() => {
       document.getElementById("thing").innerText = 'you currently have ' + boba + ' boba and $' + Math.round(money * 100) / 100 + '.';
       document.getElementById('mark').style.cursor = 'pointer';
@@ -95,9 +105,14 @@ function market() {
       marketcost = Math.round((marketcost * 1.15) * 100) / 100;
       document.getElementById('mark').innerText = 'advertise for $' + marketcost;
       document.getElementById('qua').innerHTML = 'each boba you sell earns you $' + Math.round(quality * 100) / 100 + '.';
+      document.getElementById('firstAd').style.display = 'block';
+      const firstAdEl = document.getElementById('firstAd');
+      if (adsrun == 1) {
+        typeText(firstAdEl, ">boba-game/console: now that you know the game, it's all up to you. goal: make $10.");
+      }
     }, 5000); //change back to 5000 l8r
   } else {
-    if(money >= marketcost) {
+    if (money >= marketcost) {
       showBobaPopup("your marketing is in progress! please wait before advertising more.");
     } else {
       showBobaPopup("get some more money to hire an actually respectable advertising agency.");
@@ -106,7 +121,7 @@ function market() {
 }
 
 const checkforwin = setInterval(() => {
-  if (money >= 10 && clickedCount>0) {
+  if (money >= 10 && clickedCount > 0) {
     clearInterval(checkforwin);
     document.getElementById("winmsg").style.display = 'block';
     showBobaPopup("🎉YOU WIN!!!🎉")
@@ -125,11 +140,15 @@ function updateCustomProgress(percent) {
 
 function showBobaPopup(text) {
   const overlay = document.getElementById("boba-popup-overlay");
-  const popupText = document.getElementById("boba-popup-text");
+  const popup = document.getElementById("boba-popup");
   const btn = document.getElementById("boba-popup-btn");
 
-  popupText.innerText = text;
+  document.getElementById("boba-popup-text").innerText = text;
   overlay.style.display = "flex";
+
+  popup.classList.remove("show"); // reset animation
+  void popup.offsetWidth; // trigger reflow
+  popup.classList.add("show");
 
   btn.onclick = () => {
     overlay.style.display = "none";
@@ -161,9 +180,9 @@ function johnnybeloud() {
 
 function johnnybeded() {
   if (flag1 && flag2) {
-    clickedCount --;
+    clickedCount--;
   }
-  
+
   flag1 = false;
   flag2 = false;
 }
@@ -171,5 +190,27 @@ function johnnybeded() {
 console.log('5, 10, 5, 3, x3, 10')
 
 function bananaphone() {
-  showBobaPopup("Leaderboard: \n 1. Little Timmy: $7890282746 \n 2. You: $" + money + "\n 3. Little Suzie: $0") 
+  showBobaPopup("Leaderboard: \n 1. Little Timmy: $7890282746 \n 2. You: $" + money + "\n 3. Little Suzie: $0")
+}
+
+function typeText(element, text, speed = 50) {
+  element.innerHTML = "";
+  element.style.opacity = 0;
+  element.style.transform = "scale(0.8)";
+  element.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+
+  setTimeout(() => {
+    element.style.opacity = 1;
+    element.style.transform = "scale(1)";
+  }, 50);
+
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < text.length) {
+      element.innerHTML += text[i];
+      i++;
+    } else {
+      clearInterval(interval);
+    }
+  }, speed);
 }

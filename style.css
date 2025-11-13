@@ -96,7 +96,8 @@ button:active {
 #sellDesc,
 #mark,
 #markDesc,
-#winmsg {
+#winmsg,
+#firstAd {
     display: none;
 }
 
@@ -144,7 +145,9 @@ h6 {
     margin-bottom: 20px;
 }
 
-#bubble3, #bubble5, #bubble10 {
+#bubble3,
+#bubble5,
+#bubble10 {
     pointer-events: all;
 }
 
@@ -186,53 +189,100 @@ h6 {
 }
 
 #boba-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #d4952171;
-  display: none; 
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #d495214b;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
 }
 
 #boba-popup {
-  background-color: #a0721c;
-  color: #fad693;
-  padding: 2rem;
-  border-radius: 1rem;
-  text-align: center;
-  max-width: 80%;
-  font-family: 'Momo Trust Sans', sans-serif;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    background-color: #a0721c;
+    color: #fad693;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 80%;
+    font-family: 'Momo Trust Sans', sans-serif;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#boba-popup p {
+    color: #ffdb9a;
 }
 
 #boba-popup-btn {
-  margin-top: 1.5rem;
-  padding: 0.8rem 2rem;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: #ffd079;
-  color: #a0721c;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.15s ease;
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #ffd079;
+    color: #a0721c;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.15s ease;
 }
 
 #boba-popup-btn:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
-.banana{
-    display:inline-block;
+.banana {
+    display: inline-block;
 }
 
-#leader{
+#leader {
     cursor: pointer;
 }
 
-.gamebox{
+.gamebox {
     display: inline-block;
+    width: 45%;
+    margin: auto;
+    vertical-align: top;
+}
+
+#console {
+    background-color: #bd851d;
+    border-radius: 7px;
+    color: #ffdb9a !important;
+    font-family: 'Momo Trust Sans', sans-serif;
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+#console>p:first-child {
+    color: #ffdb9a;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#console,
+#console * {
+    color: #ffdb9a !important;
+}
+
+@keyframes bobaPopIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#boba-popup.show {
+    animation: bobaPopIn 0.4s ease forwards;
 }
