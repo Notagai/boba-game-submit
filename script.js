@@ -30,7 +30,7 @@ let btnAllowed = true;
 let markAllowed = true;
 let marketcost = 0.10;
 let adsrun = 0;
-let clickedCount = 0;
+let clickedCount = 3;
 
 // type-once flags
 let typedFlags = {
