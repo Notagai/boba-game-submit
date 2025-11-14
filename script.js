@@ -4,7 +4,7 @@ const letters = "abcdefghijklmnopqrstuvwxyz";
 const thesoundofthedemons = new Audio("fahhhhhhhhhhhhhh.mp3");
 const bgmusic = new Audio("bgm.mp3");
 const popSound = new Audio("pop1.mp3");
-popSound.volume = 1;
+popSound.volume = 0.5;
 
 // intro
 showBobaPopup("welcome to the boba game! check the console for a tutorial, and have fun brewing!");
@@ -72,6 +72,11 @@ title.onmouseover = event => {
   }, 30);
 };
 
+// please stop looking at my code 
+// the organisation is -_-
+// i mean you're looking i guess
+// game logic
+
 // game variables
 let boba = 0;
 let bobasold = 0;
@@ -132,7 +137,8 @@ function brew() {
   brewBtn.innerText = 'boba brewing...';
   bobasold++;
   popSound.play();
-
+  
+  // ^ after click  v when done
   setTimeout(() => {
     boba++;
     document.getElementById("thing").innerText = `you currently have ${boba} boba and $${Math.round(money * 100) / 100}.`;
@@ -196,6 +202,7 @@ function market() {
   markBtn.innerText = 'running ads...';
   money -= marketcost;
 
+  // ^ after click  v when done
   setTimeout(() => {
     markAllowed = true;
     quality += 0.01;
@@ -245,7 +252,7 @@ function showBobaPopup(text) {
 }
 
 // typewriter effect (type once per element)
-function typeText(element, text, speed = 50) {
+function typeText(element, text, speed = 60) {
   element.innerHTML = "";
   element.style.opacity = 0;
   element.style.transform = "scale(0.8)";
@@ -254,7 +261,7 @@ function typeText(element, text, speed = 50) {
   setTimeout(() => {
     element.style.opacity = 1;
     element.style.transform = "scale(1)";
-  }, 50);
+  }, 40);
 
   let i = 0;
   const interval = setInterval(() => {
@@ -267,8 +274,8 @@ function typeText(element, text, speed = 50) {
   }, speed);
 }
 
-// easter eggs & leaderboard (unchanged)
-
+// easter eggs & fake leaderboard
+// lil suzie sybau u only got 0 dollars
 
 function resetFlags() {
   flags = [];
