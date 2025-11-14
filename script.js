@@ -100,6 +100,8 @@ let typedFlags = {
   firstAd: false
 };
 
+// eggs
+
 // quests
 const quests = [
   { target: 1, getValue: () => bobasold },
