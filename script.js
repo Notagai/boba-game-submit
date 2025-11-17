@@ -319,3 +319,5 @@ function bubble(bubbleNumber) {
 function bananaphone() {
   showBobaPopup("Leaderboard: \n 1. Little Timmy: $7890282746 \n 2. You: $" + money + "\n 3. Little Suzie: $0")
 }
+
+// please do not goon on my code thank you
